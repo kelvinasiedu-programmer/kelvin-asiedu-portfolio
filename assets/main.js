@@ -1,86 +1,106 @@
 const blurLayer = document.querySelector('.layer-blur');
 const morphNameEl = document.querySelector('#morph-name');
 const morphCounterEl = document.querySelector('#morph-counter');
-const morphProgressEl = document.querySelector('.morph-progress span');
-const editorialSections = document.querySelectorAll('.editorial-section');
+const morphProgressEl = document.querySelector('#morph-progress');
+const dotNavs = Array.from(document.querySelectorAll('.dot-nav'));
+const portfolioSections = document.querySelectorAll('.portfolio-section');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const shapeNames = ['Interface', 'System', 'Signal', 'Flow'];
 
 document.body.classList.toggle('reduced-motion', prefersReducedMotion);
 
-const setStaticHeroState = () => {
-  if (blurLayer) {
-    blurLayer.style.setProperty('--x', `${window.innerWidth * 0.5}px`);
-    blurLayer.style.setProperty('--y', `${window.innerHeight * 0.2}px`);
-  }
+function syncMorphUi(index = 0, progress = 0) {
+  const safeIndex = Math.max(0, Math.min(index, shapeNames.length - 1));
+  const safeProgress = Math.max(0, Math.min(progress, 100));
 
   if (morphNameEl) {
-    morphNameEl.textContent = 'Interface';
+    morphNameEl.textContent = shapeNames[safeIndex];
   }
 
   if (morphCounterEl) {
-    morphCounterEl.textContent = '01 / 04';
+    morphCounterEl.textContent = `${String(safeIndex + 1).padStart(2, '0')} / ${String(shapeNames.length).padStart(2, '0')}`;
   }
 
   if (morphProgressEl) {
-    morphProgressEl.style.width = '25%';
+    morphProgressEl.style.width = `${safeProgress}%`;
   }
-};
 
-setStaticHeroState();
-
-if (blurLayer && !prefersReducedMotion) {
-  const pointer = {
-    currentX: window.innerWidth * 0.5,
-    currentY: window.innerHeight * 0.2,
-    targetX: window.innerWidth * 0.5,
-    targetY: window.innerHeight * 0.2
-  };
-
-  let rafId = 0;
-
-  const paint = () => {
-    pointer.currentX += (pointer.targetX - pointer.currentX) * 0.12;
-    pointer.currentY += (pointer.targetY - pointer.currentY) * 0.12;
-
-    blurLayer.style.setProperty('--x', `${pointer.currentX}px`);
-    blurLayer.style.setProperty('--y', `${pointer.currentY}px`);
-
-    if (
-      Math.abs(pointer.targetX - pointer.currentX) > 0.1 ||
-      Math.abs(pointer.targetY - pointer.currentY) > 0.1
-    ) {
-      rafId = window.requestAnimationFrame(paint);
-    } else {
-      rafId = 0;
-    }
-  };
-
-  const queuePaint = () => {
-    if (!rafId) {
-      rafId = window.requestAnimationFrame(paint);
-    }
-  };
-
-  const syncTarget = (clientX, clientY) => {
-    pointer.targetX = clientX;
-    pointer.targetY = clientY;
-    queuePaint();
-  };
-
-  window.addEventListener('pointermove', (event) => {
-    syncTarget(event.clientX, event.clientY);
+  dotNavs.forEach((dotNav, dotIndex) => {
+    dotNav.classList.toggle('active', dotIndex === safeIndex);
   });
-
-  window.addEventListener('resize', () => {
-    syncTarget(window.innerWidth * 0.5, window.innerHeight * 0.2);
-  });
-} else {
-  window.addEventListener('resize', setStaticHeroState);
 }
 
-if (editorialSections.length) {
+syncMorphUi(0, 0);
+
+window.addEventListener('portfolio:morphchange', (event) => {
+  const index = Number.isFinite(event.detail?.index) ? event.detail.index : 0;
+  const progress = Number.isFinite(event.detail?.progress) ? event.detail.progress : 0;
+  syncMorphUi(index, progress);
+});
+
+dotNavs.forEach((dotNav) => {
+  dotNav.addEventListener('click', () => {
+    const targetIndex = Number.parseInt(dotNav.dataset.idx ?? '0', 10);
+
+    window.dispatchEvent(
+      new CustomEvent('portfolio:request-morph', {
+        detail: {
+          index: Number.isNaN(targetIndex) ? 0 : targetIndex
+        }
+      })
+    );
+  });
+});
+
+if (blurLayer) {
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let smoothX = mouseX;
+  let smoothY = mouseY;
+  let lastBlurX = '';
+  let lastBlurY = '';
+
+  const applyBlurPosition = (x, y) => {
+    const nextX = `${((x / window.innerWidth) * 100).toFixed(1)}%`;
+    const nextY = `${((y / window.innerHeight) * 100).toFixed(1)}%`;
+
+    if (nextX !== lastBlurX || nextY !== lastBlurY) {
+      lastBlurX = nextX;
+      lastBlurY = nextY;
+      blurLayer.style.setProperty('--x', nextX);
+      blurLayer.style.setProperty('--y', nextY);
+    }
+  };
+
+  applyBlurPosition(mouseX, mouseY);
+
+  if (!prefersReducedMotion) {
+    document.addEventListener('pointermove', (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+    });
+
+    const animateBlur = () => {
+      smoothX += (mouseX - smoothX) * 0.1;
+      smoothY += (mouseY - smoothY) * 0.1;
+      applyBlurPosition(smoothX, smoothY);
+      window.requestAnimationFrame(animateBlur);
+    };
+
+    window.requestAnimationFrame(animateBlur);
+  } else {
+    window.addEventListener('resize', () => {
+      mouseX = window.innerWidth / 2;
+      mouseY = window.innerHeight / 2;
+      applyBlurPosition(mouseX, mouseY);
+    });
+  }
+}
+
+if (portfolioSections.length) {
   if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-    editorialSections.forEach((section) => {
+    portfolioSections.forEach((section) => {
       section.classList.add('is-visible');
     });
   } else {
@@ -100,7 +120,7 @@ if (editorialSections.length) {
       }
     );
 
-    editorialSections.forEach((section) => {
+    portfolioSections.forEach((section) => {
       revealObserver.observe(section);
     });
   }

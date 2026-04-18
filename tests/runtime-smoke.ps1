@@ -95,8 +95,9 @@ try {
     }
 
     $heroBrand = Invoke-PlaywrightCli "-s=$session" eval "(() => document.querySelector('.nav-brand')?.textContent?.trim() ?? '')()" --raw
+    $heroBrandValue = $heroBrand.Trim().Trim('"')
 
-    if ($LASTEXITCODE -ne 0 -or $heroBrand.Trim() -ne 'Kelvin Asiedu') {
+    if ($LASTEXITCODE -ne 0 -or $heroBrandValue -ne 'Kelvin Asiedu') {
         throw "Runtime smoke could not confirm the VANTA hero brand. Saw: $heroBrand"
     }
 
@@ -107,17 +108,19 @@ try {
     }
 
     $consoleErrors = Invoke-PlaywrightCli "-s=$session" console error --raw
+    $consoleErrorText = ($consoleErrors | Out-String).Trim()
 
     if ($LASTEXITCODE -ne 0) {
         throw 'Runtime smoke could not inspect browser console output.'
     }
 
     if (
-        -not [string]::IsNullOrWhiteSpace($consoleErrors) -and
-        $consoleErrors -notmatch 'Errors:\s*0' -and
-        $consoleErrors -notmatch 'favicon\.ico'
+        -not [string]::IsNullOrWhiteSpace($consoleErrorText) -and
+        $consoleErrorText -notmatch 'Errors:\s*0' -and
+        $consoleErrorText -notmatch 'Returning\s+0\s+messages\s+for\s+level\s+"error"' -and
+        $consoleErrorText -notmatch 'favicon\.ico'
     ) {
-        throw "Runtime smoke detected browser console errors.`n$consoleErrors"
+        throw "Runtime smoke detected browser console errors.`n$consoleErrorText"
     }
 
     Write-Host 'Homepage runtime smoke check passed.'

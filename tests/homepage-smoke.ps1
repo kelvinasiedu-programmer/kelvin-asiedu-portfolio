@@ -12,21 +12,17 @@ $packageJsonContent = Get-Content $packageJsonPath -Raw
 
 $required = @(
     'Kelvin Asiedu',
-    'View Work',
-    'About Kelvin',
+    'View Collection',
+    'How We Think',
     './assets/main.js',
     './assets/styles.css',
     'type="module"',
-    'id="three-container"',
-    'Interface',
-    'System',
-    'Signal',
-    'Flow'
+    'id="three-container"'
 )
 
 foreach ($needle in $required) {
     if ($content -notmatch [regex]::Escape($needle)) {
-        if ($needle -in @('./assets/main.js', './assets/styles.css', 'type="module"', 'id="three-container"', 'Interface', 'System', 'Signal', 'Flow')) {
+        if ($needle -in @('./assets/main.js', './assets/styles.css', 'type="module"', 'id="three-container"')) {
             throw "Missing hero asset or morph label: $needle"
         }
 
@@ -44,7 +40,7 @@ $vantaShellChecks = @(
     'class="morph-progress-fill"',
     'View Collection',
     'How We Think',
-    'somewhere between math & magic'
+    'somewhere between math &amp; magic'
 )
 
 foreach ($needle in $vantaShellChecks) {
@@ -80,7 +76,7 @@ $editorialRequired = @(
     'Interface Design',
     'UX Strategy',
     'Front-End Development',
-    'Analytics & Systems',
+    'Analytics &amp; Systems',
     'RAG Chatbot',
     'PulseCommerce',
     'Bank Account System',
@@ -127,7 +123,7 @@ foreach ($pattern in @(
 }
 
 foreach ($needle in @(
-    '.editorial-section.is-visible',
+    '.portfolio-section.is-visible',
     '@media (prefers-reduced-motion: reduce)',
     '@media (max-width: 768px)',
     '100dvh'
@@ -139,7 +135,9 @@ foreach ($needle in @(
 
 foreach ($needle in @(
     'IntersectionObserver',
-    'is-visible'
+    'is-visible',
+    '.dot-nav',
+    '#morph-progress'
 )) {
     if ($mainScriptContent -notmatch [regex]::Escape($needle)) {
         throw "Missing reveal-safe script behavior: $needle"
@@ -147,6 +145,9 @@ foreach ($needle in @(
 }
 
 foreach ($needle in @(
+    'PARTICLE_COUNT',
+    'sampleGeometry',
+    'OrbitControls',
     'visibilitychange',
     'cancelAnimationFrame',
     'maxAnimatedDuration'
