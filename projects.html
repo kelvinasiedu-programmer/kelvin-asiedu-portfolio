@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | Kelvin Asiedu</title>
+  <meta
+    name="description"
+    content="Featured projects by Kelvin Asiedu spanning ecommerce analytics, RAG applications, and fintech-style software systems."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body class="subpage">
+  <div class="subpage-shell">
+    <header class="page-nav">
+      <a href="./index.html" class="nav-brand">Kelvin Asiedu</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="./about.html" class="nav-link"><span class="nav-idx">01</span>About</a>
+        <a href="./projects.html" class="nav-link is-active" aria-current="page"><span class="nav-idx">02</span>Projects</a>
+        <a href="./experience.html" class="nav-link"><span class="nav-idx">03</span>Experience</a>
+        <a href="./contact.html" class="nav-link"><span class="nav-idx">04</span>Contact</a>
+      </nav>
+    </header>
+
+    <main class="page-content">
+      <section class="page-section">
+        <p class="section-kicker">Projects</p>
+        <div class="page-heading">
+          <h1>Featured Projects</h1>
+          <p class="page-lead">
+            These projects show how I approach analytics, AI systems, software engineering,
+            and stakeholder-facing delivery with measurable outcomes.
+          </p>
+        </div>
+      </section>
+
+      <section class="page-section project-stack">
+        <article class="project-entry">
+          <div class="project-heading">
+            <p class="project-number">01</p>
+            <div>
+              <h2>PulseCommerce</h2>
+              <p class="project-meta">Python, DuckDB, scikit-learn, XGBoost, Streamlit, Docker | Mar 2026 to Apr 2026</p>
+            </div>
+          </div>
+          <p class="project-blurb">
+            An ecommerce analytics platform designed to convert raw event data into decision-ready
+            outputs for business stakeholders.
+          </p>
+          <ul class="page-list">
+            <li>Transformed 450K raw ecommerce events into 5 decision-ready analytics layers covering funnel diagnosis, demand forecasting, churn scoring, and A/B test evaluation.</li>
+            <li>Trained an XGBoost churn-risk model that reached 0.889 AUC on customer behavior features.</li>
+            <li>Authored 13 pytest cases covering 68% of the codebase and containerized the project with Docker.</li>
+            <li>Built a stakeholder-facing Streamlit dashboard that translated technical outputs into usable business KPIs.</li>
+          </ul>
+          <div class="project-actions">
+            <a class="btn-main" href="https://kelvin-programmer-pulsecommerce.hf.space/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            <a class="btn-ghost" href="https://github.com/kelvinasiedu-programmer/pulsecommerce" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </article>
+
+        <article class="project-entry">
+          <div class="project-heading">
+            <p class="project-number">02</p>
+            <div>
+              <h2>RAG Chatbot</h2>
+              <p class="project-meta">Python, FastAPI, FAISS, Next.js, TypeScript, Docker | Oct 2025 to Nov 2025</p>
+            </div>
+          </div>
+          <p class="project-blurb">
+            A retrieval-augmented chatbot built to produce grounded, context-aware responses rather than generic generation.
+          </p>
+          <ul class="page-list">
+            <li>Engineered an end-to-end RAG pipeline that combined FAISS vector retrieval with LLM generation.</li>
+            <li>Reduced hallucination rate through prompt engineering, embedding tuning, and response evaluation loops.</li>
+            <li>Deployed a full-stack application with a FastAPI backend and a Next.js frontend aligned with enterprise AI delivery patterns.</li>
+          </ul>
+          <div class="project-actions">
+            <a class="btn-main" href="https://rag-chatbot-web.vercel.app/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            <a class="btn-ghost" href="https://github.com/kelvinasiedu-programmer/rag-chatbot-web" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </article>
+
+        <article class="project-entry">
+          <div class="project-heading">
+            <p class="project-number">03</p>
+            <div>
+              <h2>Bank Account System</h2>
+              <p class="project-meta">Python, FastAPI, Pydantic, Docker, pytest | Mar 2025 to May 2025</p>
+            </div>
+          </div>
+          <p class="project-blurb">
+            A fintech-style banking system that models account behavior, validation rules, and tiered interest logic.
+          </p>
+          <ul class="page-list">
+            <li>Architected an OOP banking platform with Savings and Checking inheritance, tiered interest logic at 3%, 5%, and 7%, plus overdraft validation.</li>
+            <li>Achieved 38 passing unit tests covering balance validation, transaction auditing, and account interactions.</li>
+            <li>Exposed the system through a FastAPI REST API with Pydantic schema validation and Docker deployment.</li>
+          </ul>
+          <div class="project-actions">
+            <a class="btn-main" href="https://kelvin-programmer-bank-account-system.hf.space/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            <a class="btn-ghost" href="https://github.com/kelvinasiedu-programmer/bank-account-system" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="page-section page-card">
+        <h2 class="page-card-title">Additional Work</h2>
+        <p>
+          Additional project work includes fine-tuned ML models, an Enterprise Technology Consulting Simulation centered on ERP and CRM integration strategy,
+          a social network analytics platform, and a Java ultimate player simulation game.
+        </p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

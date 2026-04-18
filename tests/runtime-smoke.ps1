@@ -94,18 +94,45 @@ try {
         throw 'Runtime smoke could not confirm the hero canvas rendered.'
     }
 
+    $heroBrand = Invoke-PlaywrightCli "-s=$session" eval "(() => document.querySelector('.nav-brand')?.textContent?.trim() ?? '')()" --raw
+    $heroBrandValue = $heroBrand.Trim().Trim('"')
+
+    if ($LASTEXITCODE -ne 0 -or $heroBrandValue -ne 'Kelvin Asiedu') {
+        throw "Runtime smoke could not confirm the VANTA hero brand. Saw: $heroBrand"
+    }
+
+    $dotCount = Invoke-PlaywrightCli "-s=$session" eval "(() => document.querySelectorAll('.dot-nav').length)()" --raw
+
+    if ($LASTEXITCODE -ne 0 -or $dotCount.Trim() -ne '4') {
+        throw "Runtime smoke expected 4 footer dot controls. Saw: $dotCount"
+    }
+
+    $hasProjectCta = Invoke-PlaywrightCli "-s=$session" eval "(() => document.body.innerHTML.includes('./projects.html') && document.body.textContent.includes('See Projects'))()" --raw
+
+    if ($LASTEXITCODE -ne 0 -or $hasProjectCta.Trim() -ne 'true') {
+        throw "Runtime smoke could not confirm the primary recruiter CTA. Saw: $hasProjectCta"
+    }
+
+    $heavyLandingContent = Invoke-PlaywrightCli "-s=$session" eval "(() => document.body.textContent.includes('PulseCommerce'))()" --raw
+
+    if ($LASTEXITCODE -ne 0 -or $heavyLandingContent.Trim() -ne 'false') {
+        throw 'Runtime smoke expected the landing page to avoid heavy project text.'
+    }
+
     $consoleErrors = Invoke-PlaywrightCli "-s=$session" console error --raw
+    $consoleErrorText = ($consoleErrors | Out-String).Trim()
 
     if ($LASTEXITCODE -ne 0) {
         throw 'Runtime smoke could not inspect browser console output.'
     }
 
     if (
-        -not [string]::IsNullOrWhiteSpace($consoleErrors) -and
-        $consoleErrors -notmatch 'Errors:\s*0' -and
-        $consoleErrors -notmatch 'favicon\.ico'
+        -not [string]::IsNullOrWhiteSpace($consoleErrorText) -and
+        $consoleErrorText -notmatch 'Errors:\s*0' -and
+        $consoleErrorText -notmatch 'Returning\s+0\s+messages\s+for\s+level\s+"error"' -and
+        $consoleErrorText -notmatch 'favicon\.ico'
     ) {
-        throw "Runtime smoke detected browser console errors.`n$consoleErrors"
+        throw "Runtime smoke detected browser console errors.`n$consoleErrorText"
     }
 
     Write-Host 'Homepage runtime smoke check passed.'
