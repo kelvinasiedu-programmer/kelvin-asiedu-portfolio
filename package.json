@@ -1,0 +1,12 @@
+{
+  "name": "kelvin-asiedu-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "echo Static portfolio ready",
+    "vercel-build": "npm run build",
+    "smoke": "powershell -ExecutionPolicy Bypass -File ./tests/homepage-smoke.ps1",
+    "runtime-smoke": "powershell -ExecutionPolicy Bypass -File ./tests/runtime-smoke.ps1"
+  }
+}

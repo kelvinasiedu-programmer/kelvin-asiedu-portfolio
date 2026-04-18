@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kelvin Asiedu — UI/UX Designer and Front-End Engineer</title>
+  <meta name="description" content="Kelvin Asiedu designs digital experiences, builds polished interfaces, and turns design, data, and systems thinking into intentional products." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Playfair+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/styles.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="three-container" aria-hidden="true"></div>
+  <div class="layer-blur" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <main class="page-shell">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav-brand" href="#top">Kelvin Asiedu</a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="hero-tag">UI/UX Designer + Front-End Engineer</p>
+        <h1 class="hero-title"><span class="line-thin">Designing</span> Digital <em>Elegance</em></h1>
+        <p class="hero-body">I design interfaces, shape product experiences, and build polished systems that connect design, data, and engineering into work that feels intentional.</p>
+        <div class="hero-actions">
+          <a class="btn-main" href="#work">View Work <span class="btn-arrow" aria-hidden="true">→</span></a>
+          <a class="btn-ghost" href="#about">About Kelvin</a>
+        </div>
+      </div>
+
+      <aside class="morph-info">
+        <p class="morph-label">Active Form</p>
+        <p id="morph-name" class="morph-name">Interface</p>
+        <p id="morph-counter" class="morph-counter">01 / 04</p>
+        <div class="morph-progress" aria-hidden="true">
+          <span></span>
+        </div>
+        <ul class="sr-only" aria-hidden="true">
+          <li>Interface</li>
+          <li>System</li>
+          <li>Signal</li>
+          <li>Flow</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="editorial-section" id="about" aria-labelledby="about-title">
+      <p class="section-kicker">Profile</p>
+      <div class="about-grid">
+        <div class="section-copy">
+          <h2 id="about-title">Designing product experiences with structure, clarity, and taste.</h2>
+          <p class="editorial-lead">I design digital products with the same care I bring to front-end execution: clear structure, calm visual judgment, and decisions that keep the interface useful long after the first impression.</p>
+          <p>I work across UI/UX design, prototyping, and implementation, shaping systems that feel polished on the surface and considered underneath. My approach blends product thinking, editorial restraint, and practical engineering so the work can communicate, perform, and scale.</p>
+        </div>
+        <div class="about-stats" aria-label="Profile focus areas">
+          <article class="about-stat">
+            <span class="about-stat-label">Design Systems</span>
+            <p>Translating visual consistency into reusable interface rules and dependable component decisions.</p>
+          </article>
+          <article class="about-stat">
+            <span class="about-stat-label">Product Thinking</span>
+            <p>Balancing user intent, business goals, and feature clarity before the work becomes complexity.</p>
+          </article>
+          <article class="about-stat">
+            <span class="about-stat-label">Front-End Execution</span>
+            <p>Building the final layer with responsiveness, accessibility, and visual precision in mind.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="editorial-section" id="capabilities" aria-labelledby="capabilities-title">
+      <p class="section-kicker">Capabilities</p>
+      <h2 id="capabilities-title">Selected strengths across design, code, and systems.</h2>
+      <div class="capabilities-grid">
+        <article class="capability-card">
+          <h3>Interface Design</h3>
+          <p>Designing visual systems, layouts, and interaction patterns that feel intentional instead of decorative.</p>
+        </article>
+        <article class="capability-card">
+          <h3>UX Strategy</h3>
+          <p>Clarifying flows, content hierarchy, and product direction so decisions stay grounded in user needs.</p>
+        </article>
+        <article class="capability-card">
+          <h3>Front-End Development</h3>
+          <p>Turning concepts into refined, responsive experiences with modern HTML, CSS, JavaScript, and React-based workflows.</p>
+        </article>
+        <article class="capability-card">
+          <h3>Analytics & Systems</h3>
+          <p>Using data awareness and systems thinking to support stronger product tradeoffs and cleaner implementation.</p>
+        </article>
+      </div>
+    </section>
+    <section class="editorial-section" id="work" aria-labelledby="work-title">
+      <p class="section-kicker">Selected Work</p>
+      <h2 id="work-title">Projects where interface, logic, and decision-making meet.</h2>
+      <div class="project-list">
+        <article class="project-panel">
+          <p class="project-number">01</p>
+          <h3>RAG Chatbot</h3>
+          <p class="project-summary">A retrieval-augmented chat experience designed to make long-form knowledge feel conversational, searchable, and fast to use.</p>
+          <p class="project-detail"><strong>Selected outcomes:</strong> Structured a focused chat workflow, clarified message hierarchy, and supported a more trustworthy answer experience.</p>
+          <p class="project-detail"><strong>Tech stack:</strong> React, JavaScript, retrieval workflows, conversational UI patterns.</p>
+          <div class="project-actions">
+            <a class="btn-ghost" href="https://github.com/kelvinasiedu-programmer/rag-chatbot-web" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </article>
+        <article class="project-panel">
+          <p class="project-number">02</p>
+          <h3>PulseCommerce</h3>
+          <p class="project-summary">A commerce concept that brings product browsing, merchandising logic, and interface polish into one cohesive storefront experience.</p>
+          <p class="project-detail"><strong>Selected outcomes:</strong> Improved visual hierarchy, organized key buying moments, and framed the product journey with clearer decision points.</p>
+          <p class="project-detail"><strong>Tech stack:</strong> Front-end UI architecture, responsive layout systems, product presentation patterns.</p>
+          <div class="project-actions">
+            <a class="btn-main" href="https://kelvin-programmer-pulsecommerce.hf.space/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            <a class="btn-ghost" href="https://huggingface.co/spaces/Kelvin-programmer/pulsecommerce" target="_blank" rel="noopener noreferrer">Source</a>
+          </div>
+        </article>
+        <article class="project-panel">
+          <p class="project-number">03</p>
+          <h3>Bank Account System</h3>
+          <p class="project-summary">A banking-style interface built around structured account flows, transaction clarity, and a safer sense of operational control.</p>
+          <p class="project-detail"><strong>Selected outcomes:</strong> Balanced dashboard readability with system feedback, streamlined account actions, and reinforced task confidence through clearer UI states.</p>
+          <p class="project-detail"><strong>Tech stack:</strong> Front-end development, stateful UI patterns, financial workflow design.</p>
+          <div class="project-actions">
+            <a class="btn-main" href="https://kelvin-programmer-bank-account-system.hf.space/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            <a class="btn-ghost" href="https://huggingface.co/spaces/kelvin-programmer/bank-account-system" target="_blank" rel="noopener noreferrer">Source</a>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section class="editorial-section" id="proof" aria-labelledby="proof-title">
+      <p class="section-kicker">Background</p>
+      <h2 id="proof-title">Business-minded, technically grounded, design-led.</h2>
+      <p class="proof-copy">My background sits at the intersection of UI/UX design, front-end engineering, analytics thinking, and enterprise-style problem solving, which helps me move comfortably between concept work, structured execution, and the product decisions that make both more effective.</p>
+    </section>
+    <section class="editorial-section" id="contact" aria-labelledby="contact-title">
+      <p class="section-kicker">Contact</p>
+      <h2 id="contact-title">Let's build something intentional.</h2>
+      <p class="editorial-lead">Open to full-time roles, internships, and collaborative product work.</p>
+      <div class="hero-actions">
+        <a class="btn-main" href="mailto:Kelvinasiedu0807@gmail.com">Send Email</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/kelvin-asiedu/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+      <p class="contact-meta">Direct email: <a class="contact-email" href="mailto:Kelvinasiedu0807@gmail.com">Kelvinasiedu0807@gmail.com</a></p>
+    </section>
+  </main>
+  <script type="module" src="./assets/main.js"></script>
+</body>
+</html>
