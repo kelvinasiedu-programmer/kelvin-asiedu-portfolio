@@ -34,6 +34,45 @@ foreach ($needle in $required) {
     }
 }
 
+$vantaShellChecks = @(
+    'class="ui-layer"',
+    'class="footer"',
+    'class="footer-right"',
+    'class="dot-nav"',
+    'class="nav-idx"',
+    'class="morph-progress-bar"',
+    'class="morph-progress-fill"',
+    'View Collection',
+    'How We Think',
+    'somewhere between math & magic'
+)
+
+foreach ($needle in $vantaShellChecks) {
+    if ($content -notmatch [regex]::Escape($needle)) {
+        throw "Missing literal VANTA shell detail: $needle"
+    }
+}
+
+$preservedPortfolioChecks = @(
+    'RAG Chatbot',
+    'PulseCommerce',
+    'Bank Account System',
+    'Design Systems',
+    'Product Thinking',
+    'Front-End Execution',
+    'Kelvinasiedu0807@gmail.com',
+    'https://www.linkedin.com/in/kelvin-asiedu/',
+    'https://github.com/kelvinasiedu-programmer/rag-chatbot-web',
+    'https://kelvin-programmer-pulsecommerce.hf.space/',
+    'https://kelvin-programmer-bank-account-system.hf.space/'
+)
+
+foreach ($needle in $preservedPortfolioChecks) {
+    if ($content -notmatch [regex]::Escape($needle)) {
+        throw "Missing preserved portfolio content: $needle"
+    }
+}
+
 $editorialRequired = @(
     'Design Systems',
     'Product Thinking',

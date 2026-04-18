@@ -94,6 +94,18 @@ try {
         throw 'Runtime smoke could not confirm the hero canvas rendered.'
     }
 
+    $heroBrand = Invoke-PlaywrightCli "-s=$session" eval "(() => document.querySelector('.nav-brand')?.textContent?.trim() ?? '')()" --raw
+
+    if ($LASTEXITCODE -ne 0 -or $heroBrand.Trim() -ne 'Kelvin Asiedu') {
+        throw "Runtime smoke could not confirm the VANTA hero brand. Saw: $heroBrand"
+    }
+
+    $dotCount = Invoke-PlaywrightCli "-s=$session" eval "(() => document.querySelectorAll('.dot-nav').length)()" --raw
+
+    if ($LASTEXITCODE -ne 0 -or $dotCount.Trim() -ne '4') {
+        throw "Runtime smoke expected 4 footer dot controls. Saw: $dotCount"
+    }
+
     $consoleErrors = Invoke-PlaywrightCli "-s=$session" console error --raw
 
     if ($LASTEXITCODE -ne 0) {
