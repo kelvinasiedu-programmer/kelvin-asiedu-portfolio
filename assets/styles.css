@@ -245,9 +245,7 @@ button {
 }
 
 .hero-tag::before {
-  content: 'o';
-  color: var(--c-accent);
-  font-size: 0.55rem;
+  display: none;
 }
 
 .hero-title {
