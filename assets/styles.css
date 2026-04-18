@@ -32,6 +32,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body.landing-page {
+  overflow: hidden;
+}
+
 a,
 button {
   cursor: pointer;
@@ -250,7 +254,7 @@ button {
   margin-bottom: 2rem;
   color: var(--c-highlight);
   font-family: var(--font-serif);
-  font-size: 4.3rem;
+  font-size: 4rem;
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -278,9 +282,9 @@ button {
 
 .line-thin {
   display: block;
-  color: rgba(240, 235, 227, 0.74);
+  color: rgba(240, 235, 227, 0.84);
   font-family: var(--font-sans);
-  font-size: 2.65rem;
+  font-size: 2.55rem;
   font-weight: 400;
   letter-spacing: 0.01em;
   text-shadow: none;
@@ -291,7 +295,7 @@ button {
   margin-bottom: 3rem;
   padding-left: 1.2rem;
   border-left: 2px solid rgba(196, 168, 130, 0.35);
-  color: rgba(232, 228, 222, 0.84);
+  color: rgba(232, 228, 222, 0.92);
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.85;
@@ -409,7 +413,7 @@ button {
 .profile-copy {
   width: min(100%, 19rem);
   margin-top: 0.95rem;
-  color: rgba(232, 228, 222, 0.78);
+  color: rgba(232, 228, 222, 0.86);
   font-size: 0.92rem;
   font-weight: 300;
   line-height: 1.8;
@@ -649,6 +653,214 @@ button {
   color: var(--c-accent);
 }
 
+.subpage {
+  background:
+    radial-gradient(circle at top, rgba(196, 168, 130, 0.08), transparent 38%),
+    linear-gradient(180deg, #111111 0%, #0d0d0d 100%);
+  color: var(--c-text);
+}
+
+.subpage-shell {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  z-index: 1;
+}
+
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem 3.5rem 0;
+}
+
+.page-nav .nav-link.is-active,
+.page-nav .nav-link[aria-current='page'] {
+  color: var(--c-highlight);
+  letter-spacing: 0.08em;
+}
+
+.page-nav .nav-link.is-active::after,
+.page-nav .nav-link[aria-current='page']::after {
+  width: 100%;
+}
+
+.page-content {
+  width: min(1160px, calc(100% - 7rem));
+  margin: 0 auto;
+  padding: 4.5rem 0 6rem;
+}
+
+.page-section {
+  padding: 0 0 4.5rem;
+}
+
+.page-section + .page-section {
+  border-top: 1px solid rgba(196, 168, 130, 0.12);
+  padding-top: 3rem;
+}
+
+.page-heading {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 780px;
+}
+
+.page-heading h1 {
+  color: var(--c-highlight);
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 6vw, 4.7rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.96;
+}
+
+.page-lead {
+  color: rgba(232, 228, 222, 0.88);
+  font-size: 1.08rem;
+  line-height: 1.9;
+  max-width: 720px;
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.page-card {
+  padding: 1.9rem;
+  border: 1px solid rgba(196, 168, 130, 0.14);
+  border-radius: 1.5rem;
+  background: rgba(26, 26, 26, 0.72);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.page-card-wide {
+  grid-column: span 2;
+}
+
+.page-card-title,
+.project-entry h2,
+.timeline-item h3,
+.skills-grid h3 {
+  color: var(--c-highlight);
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.page-card p,
+.timeline-item p,
+.project-blurb,
+.project-meta,
+.contact-tile span:last-child,
+.skills-grid p {
+  color: rgba(232, 228, 222, 0.84);
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.page-inline-link {
+  color: var(--c-highlight);
+  text-decoration: none;
+}
+
+.page-inline-link:hover {
+  color: var(--c-accent);
+}
+
+.page-list {
+  display: grid;
+  gap: 0.9rem;
+  margin-left: 1.2rem;
+  color: rgba(232, 228, 222, 0.84);
+  line-height: 1.8;
+}
+
+.page-list li::marker {
+  color: var(--c-accent);
+}
+
+.project-stack {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.project-entry {
+  padding: 2rem;
+  border: 1px solid rgba(196, 168, 130, 0.14);
+  border-radius: 1.5rem;
+  background: rgba(26, 26, 26, 0.76);
+}
+
+.project-heading {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem 1.4rem;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+
+.project-meta,
+.timeline-meta,
+.contact-label {
+  color: var(--c-accent);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.project-blurb {
+  color: var(--c-highlight);
+  font-size: 1.04rem;
+  margin-bottom: 1rem;
+}
+
+.timeline {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.timeline-item + .timeline-item {
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(196, 168, 130, 0.12);
+}
+
+.skills-grid {
+  align-items: start;
+}
+
+.contact-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.contact-tile {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(196, 168, 130, 0.12);
+  border-radius: 1rem;
+  background: rgba(14, 14, 14, 0.56);
+  color: var(--c-text);
+  text-decoration: none;
+  transition: border-color 0.35s var(--ease), transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+.contact-tile:hover {
+  border-color: rgba(196, 168, 130, 0.38);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -689,8 +901,13 @@ button {
   .support-notes,
   .editorial-block,
   .project-panel,
-  .capability-row {
+  .capability-row,
+  .page-grid {
     grid-template-columns: 1fr;
+  }
+
+  .page-card-wide {
+    grid-column: auto;
   }
 }
 
@@ -702,13 +919,15 @@ button {
   }
 
   .nav,
+  .page-nav,
   .hero,
   .footer,
   .portfolio-section {
     padding-inline: 2rem;
   }
 
-  .nav {
+  .nav,
+  .page-nav {
     align-items: flex-start;
     gap: 1.5rem;
     padding-top: 1.5rem;
@@ -731,7 +950,7 @@ button {
   }
 
   .line-thin {
-    font-size: 1.7rem;
+    font-size: 1.85rem;
   }
 
   .hero-body {
@@ -756,6 +975,28 @@ button {
 
   .project-panel h3 {
     font-size: 1.65rem;
+  }
+
+  .page-content {
+    width: min(100% - 4rem, 100%);
+    padding: 3rem 0 4rem;
+  }
+
+  .page-section {
+    padding-bottom: 3.5rem;
+  }
+
+  .page-heading h1 {
+    font-size: 2.7rem;
+  }
+
+  .page-card,
+  .project-entry {
+    padding: 1.4rem;
+  }
+
+  .project-heading {
+    grid-template-columns: 1fr;
   }
 }
 

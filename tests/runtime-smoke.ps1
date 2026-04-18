@@ -101,22 +101,22 @@ try {
         throw "Runtime smoke could not confirm the VANTA hero brand. Saw: $heroBrand"
     }
 
-    $profileGlance = Invoke-PlaywrightCli "-s=$session" eval "(() => document.querySelector('.profile-glance')?.textContent?.trim() ?? '')()" --raw
-
-    if ($LASTEXITCODE -ne 0 -or $profileGlance -notmatch 'Penn State') {
-        throw "Runtime smoke could not confirm the resume-aligned profile glance block. Saw: $profileGlance"
-    }
-
-    $hasMorphInfo = Invoke-PlaywrightCli "-s=$session" eval "(() => Boolean(document.querySelector('.morph-info')))()" --raw
-
-    if ($LASTEXITCODE -ne 0 -or $hasMorphInfo.Trim() -ne 'false') {
-        throw 'Runtime smoke expected the old Active Form panel to be removed.'
-    }
-
     $dotCount = Invoke-PlaywrightCli "-s=$session" eval "(() => document.querySelectorAll('.dot-nav').length)()" --raw
 
     if ($LASTEXITCODE -ne 0 -or $dotCount.Trim() -ne '4') {
         throw "Runtime smoke expected 4 footer dot controls. Saw: $dotCount"
+    }
+
+    $hasProjectCta = Invoke-PlaywrightCli "-s=$session" eval "(() => document.body.innerHTML.includes('./projects.html') && document.body.textContent.includes('See Projects'))()" --raw
+
+    if ($LASTEXITCODE -ne 0 -or $hasProjectCta.Trim() -ne 'true') {
+        throw "Runtime smoke could not confirm the primary recruiter CTA. Saw: $hasProjectCta"
+    }
+
+    $heavyLandingContent = Invoke-PlaywrightCli "-s=$session" eval "(() => document.body.textContent.includes('PulseCommerce'))()" --raw
+
+    if ($LASTEXITCODE -ne 0 -or $heavyLandingContent.Trim() -ne 'false') {
+        throw 'Runtime smoke expected the landing page to avoid heavy project text.'
     }
 
     $consoleErrors = Invoke-PlaywrightCli "-s=$session" console error --raw
