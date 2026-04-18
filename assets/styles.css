@@ -2,7 +2,7 @@
   --c-bg: #0e0e0e;
   --c-surface: #1a1a1a;
   --c-text: #e8e4de;
-  --c-text-dim: #7a756d;
+  --c-text-dim: #aca49a;
   --c-accent: #c4a882;
   --c-accent-2: #8b7355;
   --c-highlight: #f0ebe3;
@@ -214,10 +214,10 @@ button {
 .hero-title,
 .hero-body,
 .hero-actions,
-.morph-label,
-.morph-name,
-.morph-counter,
-.morph-progress-bar,
+.profile-label,
+.profile-title,
+.profile-copy,
+.profile-list,
 .footer-left,
 .footer-right {
   opacity: 0;
@@ -229,13 +229,13 @@ button {
   gap: 1rem;
   width: fit-content;
   margin-bottom: 2rem;
-  padding: 0.5rem 1rem;
+  padding: 0.55rem 1.05rem;
   border: 1px solid rgba(196, 168, 130, 0.15);
   border-radius: 2rem;
   color: var(--c-accent);
   font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.25em;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   animation: slideUp 1.2s var(--ease) forwards 0.3s;
 }
@@ -250,10 +250,11 @@ button {
   margin-bottom: 2rem;
   color: var(--c-highlight);
   font-family: var(--font-serif);
-  font-size: 4.8rem;
+  font-size: 4.3rem;
   font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.32);
   animation: slideUp 1.4s var(--ease) forwards 0.5s;
 }
 
@@ -277,22 +278,24 @@ button {
 
 .line-thin {
   display: block;
-  color: var(--c-text-dim);
+  color: rgba(240, 235, 227, 0.74);
   font-family: var(--font-sans);
-  font-size: 3.6rem;
-  font-weight: 300;
-  letter-spacing: 0.02em;
+  font-size: 2.65rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-shadow: none;
 }
 
 .hero-body {
-  max-width: 380px;
+  max-width: 430px;
   margin-bottom: 3rem;
   padding-left: 1.2rem;
-  border-left: 2px solid rgba(196, 168, 130, 0.2);
-  color: var(--c-text-dim);
-  font-size: 0.9rem;
-  font-weight: 300;
-  line-height: 1.8;
+  border-left: 2px solid rgba(196, 168, 130, 0.35);
+  color: rgba(232, 228, 222, 0.84);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.85;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.28);
   animation: slideUp 1.4s var(--ease) forwards 0.8s;
 }
 
@@ -372,7 +375,7 @@ button {
   transform: translateX(4px);
 }
 
-.morph-info {
+.profile-glance {
   grid-column: 2;
   grid-row: 2;
   display: flex;
@@ -382,8 +385,9 @@ button {
   padding: 0 3.5rem 6rem 0;
 }
 
-.morph-label {
-  margin-bottom: 0.5rem;
+.profile-label {
+  width: min(100%, 19rem);
+  margin-bottom: 0.6rem;
   color: var(--c-text-dim);
   font-family: var(--font-mono);
   font-size: 0.6rem;
@@ -392,41 +396,40 @@ button {
   animation: fadeIn 2s var(--ease) forwards 1.5s;
 }
 
-.morph-name {
-  color: var(--c-accent);
+.profile-title {
+  width: min(100%, 19rem);
+  color: var(--c-highlight);
   font-family: var(--font-serif);
-  font-size: 2.2rem;
-  font-style: italic;
+  font-size: 2.1rem;
+  font-style: normal;
   letter-spacing: -0.02em;
-  transition: all 0.6s var(--ease);
   animation: fadeIn 2s var(--ease) forwards 1.7s;
 }
 
-.morph-progress-bar {
-  width: 80px;
-  height: 2px;
-  margin-top: 1rem;
-  overflow: hidden;
-  border-radius: 1px;
-  background: rgba(196, 168, 130, 0.1);
+.profile-copy {
+  width: min(100%, 19rem);
+  margin-top: 0.95rem;
+  color: rgba(232, 228, 222, 0.78);
+  font-size: 0.92rem;
+  font-weight: 300;
+  line-height: 1.8;
+  animation: fadeIn 2s var(--ease) forwards 1.9s;
+}
+
+.profile-list {
+  width: min(100%, 19rem);
+  margin-top: 1.35rem;
+  list-style: none;
   animation: fadeIn 2s var(--ease) forwards 2s;
 }
 
-.morph-progress-fill {
-  width: 0%;
-  height: 100%;
-  border-radius: 1px;
-  background: var(--c-accent);
-  transition: width 0.14s linear;
-}
-
-.morph-counter {
-  margin-top: 0.8rem;
-  color: var(--c-accent-2);
-  font-family: var(--font-mono);
-  font-size: 0.55rem;
-  letter-spacing: 0.1em;
-  animation: fadeIn 2s var(--ease) forwards 1.9s;
+.profile-list li {
+  padding: 0.9rem 0;
+  border-top: 1px solid rgba(196, 168, 130, 0.15);
+  color: rgba(232, 228, 222, 0.9);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .footer {
@@ -636,6 +639,12 @@ button {
   text-decoration: none;
 }
 
+.project-panel .btn-main,
+.project-panel .btn-ghost {
+  min-height: 2.85rem;
+  padding: 0.75rem 1.5rem;
+}
+
 .contact-email:hover {
   color: var(--c-accent);
 }
@@ -673,7 +682,7 @@ button {
     padding-right: 3.5rem;
   }
 
-  .morph-info {
+  .profile-glance {
     display: none;
   }
 
@@ -718,16 +727,16 @@ button {
   }
 
   .hero-title {
-    font-size: 2.6rem;
+    font-size: 2.95rem;
   }
 
   .line-thin {
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
 
   .hero-body {
     max-width: 100%;
-    font-size: 0.92rem;
+    font-size: 0.95rem;
   }
 
   .footer {
@@ -763,10 +772,10 @@ button {
   .hero-title,
   .hero-body,
   .hero-actions,
-  .morph-label,
-  .morph-name,
-  .morph-counter,
-  .morph-progress-bar,
+  .profile-label,
+  .profile-title,
+  .profile-copy,
+  .profile-list,
   .footer-left,
   .footer-right {
     animation: none;
@@ -778,7 +787,6 @@ button {
   .nav-link,
   .nav-brand,
   .portfolio-section,
-  .morph-progress-fill,
   .btn-arrow,
   .dot-nav {
     transition: none;

@@ -12,8 +12,9 @@ $packageJsonContent = Get-Content $packageJsonPath -Raw
 
 $required = @(
     'Kelvin Asiedu',
-    'View Collection',
-    'How We Think',
+    'Enterprise Technology Integration Student at Penn State',
+    'See Projects',
+    'Resume Highlights',
     './assets/main.js',
     './assets/styles.css',
     'type="module"',
@@ -36,11 +37,10 @@ $vantaShellChecks = @(
     'class="footer-right"',
     'class="dot-nav"',
     'class="nav-idx"',
-    'class="morph-progress-bar"',
-    'class="morph-progress-fill"',
-    'View Collection',
-    'How We Think',
-    'somewhere between math &amp; magic'
+    'class="profile-glance"',
+    'See Projects',
+    'Resume Highlights',
+    'AI, analytics &amp; product systems'
 )
 
 foreach ($needle in $vantaShellChecks) {
@@ -53,9 +53,9 @@ $preservedPortfolioChecks = @(
     'RAG Chatbot',
     'PulseCommerce',
     'Bank Account System',
-    'Design Systems',
-    'Product Thinking',
-    'Front-End Execution',
+    'Penn State ETI',
+    'MEP Scholar',
+    'Machine Learning Bootcamp',
     'Kelvinasiedu0807@gmail.com',
     'https://www.linkedin.com/in/kelvin-asiedu/',
     'https://github.com/kelvinasiedu-programmer/rag-chatbot-web',
@@ -70,22 +70,32 @@ foreach ($needle in $preservedPortfolioChecks) {
 }
 
 $editorialRequired = @(
-    'Design Systems',
-    'Product Thinking',
-    'Front-End Execution',
-    'Interface Design',
-    'UX Strategy',
-    'Front-End Development',
-    'Analytics &amp; Systems',
+    'Analytics Platforms',
+    'AI Applications',
+    'Full-Stack Delivery',
+    'Business Analysis',
     'RAG Chatbot',
     'PulseCommerce',
     'Bank Account System',
-    'Let''s build something intentional.'
+    'Open to internships and early-career roles in analytics, AI, product, and software.'
 )
 
 foreach ($value in $editorialRequired) {
     if ($content -notmatch [regex]::Escape($value)) {
         throw "Missing editorial section content: $value"
+    }
+}
+
+foreach ($needle in @(
+    'Active Form',
+    'class="morph-info"',
+    'UI/UX Designer + Front-End Engineer',
+    'Designing',
+    'Digital',
+    'Elegance'
+)) {
+    if ($content -match [regex]::Escape($needle)) {
+        throw "Found old hero or morph content that should be removed: $needle"
     }
 }
 
@@ -107,15 +117,15 @@ foreach ($link in $blankTargetLinks) {
 
 foreach ($pattern in @(
     '<section(?=[^>]*\bid="about")(?=[^>]*\baria-labelledby="about-title")[^>]*>',
-    '<h2(?=[^>]*\bid="about-title")[^>]*>\s*Designing product experiences with structure, clarity, and taste\.\s*</h2>',
+    '<h2(?=[^>]*\bid="about-title")[^>]*>\s*I like work that sits between business questions, technical systems, and usable product design\.\s*</h2>',
     '<section(?=[^>]*\bid="capabilities")(?=[^>]*\baria-labelledby="capabilities-title")[^>]*>',
-    '<h2(?=[^>]*\bid="capabilities-title")[^>]*>\s*Selected strengths across design, code, and systems\.\s*</h2>',
+    '<h2(?=[^>]*\bid="capabilities-title")[^>]*>\s*The work I''m strongest in right now spans analytics, AI, software delivery, and business thinking\.\s*</h2>',
     '<section(?=[^>]*\bid="work")(?=[^>]*\baria-labelledby="work-title")[^>]*>',
-    '<h2(?=[^>]*\bid="work-title")[^>]*>\s*Projects where interface, logic, and decision-making meet\.\s*</h2>',
+    '<h2(?=[^>]*\bid="work-title")[^>]*>\s*Live projects with measurable outcomes and decision-ready outputs\.\s*</h2>',
     '<section(?=[^>]*\bid="proof")(?=[^>]*\baria-labelledby="proof-title")[^>]*>',
-    '<h2(?=[^>]*\bid="proof-title")[^>]*>\s*Business-minded, technically grounded, design-led\.\s*</h2>',
+    '<h2(?=[^>]*\bid="proof-title")[^>]*>\s*Education, leadership, and technical range behind the projects\.\s*</h2>',
     '<section(?=[^>]*\bid="contact")(?=[^>]*\baria-labelledby="contact-title")[^>]*>',
-    '<h2(?=[^>]*\bid="contact-title")[^>]*>\s*Let''s build something intentional\.\s*</h2>'
+    '<h2(?=[^>]*\bid="contact-title")[^>]*>\s*Open to internships and early-career roles in analytics, AI, product, and software\.\s*</h2>'
 )) {
     if ($content -notmatch $pattern) {
         throw "Missing homepage content: $pattern"
@@ -137,7 +147,7 @@ foreach ($needle in @(
     'IntersectionObserver',
     'is-visible',
     '.dot-nav',
-    '#morph-progress'
+    'portfolio:request-morph'
 )) {
     if ($mainScriptContent -notmatch [regex]::Escape($needle)) {
         throw "Missing reveal-safe script behavior: $needle"

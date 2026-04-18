@@ -1,42 +1,24 @@
 const blurLayer = document.querySelector('.layer-blur');
-const morphNameEl = document.querySelector('#morph-name');
-const morphCounterEl = document.querySelector('#morph-counter');
-const morphProgressEl = document.querySelector('#morph-progress');
 const dotNavs = Array.from(document.querySelectorAll('.dot-nav'));
 const portfolioSections = document.querySelectorAll('.portfolio-section');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const shapeNames = ['Interface', 'System', 'Signal', 'Flow'];
+const sceneCount = 4;
 
 document.body.classList.toggle('reduced-motion', prefersReducedMotion);
 
-function syncMorphUi(index = 0, progress = 0) {
-  const safeIndex = Math.max(0, Math.min(index, shapeNames.length - 1));
-  const safeProgress = Math.max(0, Math.min(progress, 100));
-
-  if (morphNameEl) {
-    morphNameEl.textContent = shapeNames[safeIndex];
-  }
-
-  if (morphCounterEl) {
-    morphCounterEl.textContent = `${String(safeIndex + 1).padStart(2, '0')} / ${String(shapeNames.length).padStart(2, '0')}`;
-  }
-
-  if (morphProgressEl) {
-    morphProgressEl.style.width = `${safeProgress}%`;
-  }
-
+function syncMorphUi(index = 0) {
+  const safeIndex = Math.max(0, Math.min(index, sceneCount - 1));
   dotNavs.forEach((dotNav, dotIndex) => {
     dotNav.classList.toggle('active', dotIndex === safeIndex);
   });
 }
 
-syncMorphUi(0, 0);
+syncMorphUi(0);
 
 window.addEventListener('portfolio:morphchange', (event) => {
   const index = Number.isFinite(event.detail?.index) ? event.detail.index : 0;
-  const progress = Number.isFinite(event.detail?.progress) ? event.detail.progress : 0;
-  syncMorphUi(index, progress);
+  syncMorphUi(index);
 });
 
 dotNavs.forEach((dotNav) => {

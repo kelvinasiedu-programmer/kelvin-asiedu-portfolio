@@ -384,7 +384,7 @@ export function initHeroScene() {
   const clock = new THREE.Clock();
   const morphDuration = 2.5;
   const morphInterval = 5;
-  const maxAnimatedDuration = 240;
+  const maxAnimatedDuration = Number.POSITIVE_INFINITY;
   let currentShape = 0;
   let targetShape = 0;
   let isMorphing = false;
