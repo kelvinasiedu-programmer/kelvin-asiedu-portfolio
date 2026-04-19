@@ -49,14 +49,16 @@
             </div>
           </div>
           <p class="project-blurb">
-            An ecommerce analytics platform designed to convert raw event data into decision-ready
-            outputs for business stakeholders.
+            Most ecommerce teams have clickstream data they cannot act on. PulseCommerce turns 450K raw events into
+            four answers: where the funnel leaks, which customers will churn, what demand looks like next month,
+            and whether the last A/B test actually won.
           </p>
           <ul class="page-list">
             <li>Transformed 450K raw ecommerce events into 5 decision-ready analytics layers covering funnel diagnosis, demand forecasting, churn scoring, and A/B test evaluation.</li>
             <li>Trained an XGBoost churn-risk model that reached 0.889 AUC on customer behavior features.</li>
             <li>Authored 13 pytest cases covering 68% of the codebase and containerized the project with Docker.</li>
             <li>Built a stakeholder-facing Streamlit dashboard that translated technical outputs into usable business KPIs.</li>
+            <li>Churn model surfaces the top-decile at-risk cohort, so a retention team using it focuses outreach on roughly 10% of the base instead of spraying discounts across the file.</li>
           </ul>
           <div class="project-actions">
             <a class="btn-main" href="https://kelvin-programmer-pulsecommerce.hf.space/" target="_blank" rel="noopener noreferrer">Live Demo</a>
@@ -73,12 +75,14 @@
             </div>
           </div>
           <p class="project-blurb">
-            A retrieval-augmented chatbot built to produce grounded, context-aware responses rather than generic generation.
+            Enterprise LLM rollouts stall on one question: can I trust the answer? This chatbot ships every response
+            with the source document it came from, removing the trust friction that kills internal AI adoption.
           </p>
           <ul class="page-list">
             <li>Engineered an end-to-end RAG pipeline that combined FAISS vector retrieval with LLM generation.</li>
             <li>Reduced hallucination rate through prompt engineering, embedding tuning, and response evaluation loops.</li>
             <li>Deployed a full-stack application with a FastAPI backend and a Next.js frontend aligned with enterprise AI delivery patterns.</li>
+            <li>Grounded-citation design means a reviewer sees exactly which uploaded PDF an answer came from, so the tool is auditable instead of a black box.</li>
           </ul>
           <div class="project-actions">
             <a class="btn-main" href="https://rag-chatbot-web.vercel.app/" target="_blank" rel="noopener noreferrer">Live Demo</a>
@@ -95,12 +99,15 @@
             </div>
           </div>
           <p class="project-blurb">
-            A fintech-style banking system that models account behavior, validation rules, and tiered interest logic.
+            A production-pattern banking backend: OOP domain model, tiered-interest savings, overdraft-guarded checking,
+            38 tests, FastAPI + Docker. Built to prove I can ship the kind of service a real bank would deploy,
+            not a tutorial clone.
           </p>
           <ul class="page-list">
             <li>Architected an OOP banking platform with Savings and Checking inheritance, tiered interest logic at 3%, 5%, and 7%, plus overdraft validation.</li>
             <li>Achieved 38 passing unit tests covering balance validation, transaction auditing, and account interactions.</li>
             <li>Exposed the system through a FastAPI REST API with Pydantic schema validation and Docker deployment.</li>
+            <li>Overdraft and tiered-interest rules are enforced at the schema layer, so a downstream API consumer cannot create an invalid account state.</li>
           </ul>
           <div class="project-actions">
             <a class="btn-main" href="https://kelvin-programmer-bank-account-system.hf.space/" target="_blank" rel="noopener noreferrer">Live Demo</a>
