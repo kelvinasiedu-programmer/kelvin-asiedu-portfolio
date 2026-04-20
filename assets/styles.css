@@ -701,6 +701,13 @@ button {
 
 .page-heading {
   display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: start;
+}
+
+.page-heading-text {
+  display: grid;
   gap: 1.25rem;
   max-width: 780px;
 }
@@ -719,6 +726,21 @@ button {
   font-size: 1.08rem;
   line-height: 1.9;
   max-width: 720px;
+}
+
+.page-heading-photo {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.page-heading-photo img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 1rem;
+  border: 1px solid rgba(196, 168, 130, 0.18);
+  display: block;
 }
 
 .page-grid {
@@ -986,6 +1008,14 @@ button {
 
   .page-heading h1 {
     font-size: 2.7rem;
+  }
+
+  .page-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .page-heading-photo {
+    width: 160px;
   }
 
   .page-card,
