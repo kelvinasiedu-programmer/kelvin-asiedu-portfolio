@@ -701,9 +701,15 @@ button {
 
 .page-heading {
   display: grid;
+  gap: 1.25rem;
+  max-width: 780px;
+}
+
+.page-heading:has(.page-heading-photo) {
   grid-template-columns: 1fr auto;
   gap: 3rem;
   align-items: start;
+  max-width: none;
 }
 
 .page-heading-text {
