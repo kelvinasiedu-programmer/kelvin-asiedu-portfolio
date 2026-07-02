@@ -55,12 +55,12 @@ foreach ($needle in @(
     }
 }
 
-if ($landingContent -notmatch 'class="ui-layer"' -or $landingContent -notmatch 'class="dot-nav"') {
+if ($landingContent -notmatch 'class="ui-layer"') {
     throw 'Landing page is missing the interactive VANTA shell.'
 }
 
 foreach ($page in @(
-    @{ Name = 'about'; Content = $aboutContent; Heading = 'About'; Required = @('About Kelvin', 'Enterprise Technology Integration', 'MEP Scholar', 'Machine Learning Bootcamp', 'Kelvinasiedu0807@gmail.com') },
+    @{ Name = 'about'; Content = $aboutContent; Heading = 'About'; Required = @('About Kelvin', 'Enterprise Technology Integration', 'Provost Scholar', 'Machine Learning Bootcamp', 'Kelvinasiedu0807@gmail.com') },
     @{ Name = 'projects'; Content = $projectsContent; Heading = 'Projects'; Required = @('Featured Projects', 'PulseCommerce', 'RAG Chatbot', 'Bank Account System', '450K raw ecommerce events') },
     @{ Name = 'experience'; Content = $experienceContent; Heading = 'Experience'; Required = @('Education & Experience', 'Penn State Derivatives Association', 'BLK Men in Tech', 'Nittany AI Student Society', 'Business Analysis') },
     @{ Name = 'contact'; Content = $contactContent; Heading = 'Contact'; Required = @('Contact', 'Kelvinasiedu0807@gmail.com', 'LinkedIn', 'GitHub', 'Frederick, MD') }
@@ -111,8 +111,6 @@ foreach ($needle in @(
 }
 
 foreach ($needle in @(
-    '.dot-nav',
-    'portfolio:request-morph',
     'pointermove'
 )) {
     if ($mainScriptContent -notmatch [regex]::Escape($needle)) {

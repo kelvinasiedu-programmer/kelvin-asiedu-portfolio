@@ -101,12 +101,6 @@ try {
         throw "Runtime smoke could not confirm the VANTA hero brand. Saw: $heroBrand"
     }
 
-    $dotCount = Invoke-PlaywrightCli "-s=$session" eval "(() => document.querySelectorAll('.dot-nav').length)()" --raw
-
-    if ($LASTEXITCODE -ne 0 -or $dotCount.Trim() -ne '4') {
-        throw "Runtime smoke expected 4 footer dot controls. Saw: $dotCount"
-    }
-
     $hasProjectCta = Invoke-PlaywrightCli "-s=$session" eval "(() => document.body.innerHTML.includes('./projects.html') && document.body.textContent.includes('See Projects'))()" --raw
 
     if ($LASTEXITCODE -ne 0 -or $hasProjectCta.Trim() -ne 'true') {

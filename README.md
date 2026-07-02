@@ -1,21 +1,28 @@
-# Kelvin Asiedu Portfolio
+# Kelvin Asiedu - Portfolio
 
-Static homepage redesign for Kelvin Asiedu's portfolio. The site ships as plain HTML, CSS, and ES modules, so deployment is intentionally simple and does not require a bundling step.
+My personal portfolio. It's a static site - hand-written HTML, CSS, and vanilla JS, with a three.js particle scene behind the homepage hero. No framework, no build step.
 
-## Local verification
+Pages: home, about, projects, experience, contact.
 
-Run the smoke checks and static build command before publishing:
+## Run it locally
+
+The pages load ES modules through an importmap, so serve the folder instead of opening the files straight from disk:
 
 ```bash
-npm run smoke
-npm run runtime-smoke
-npm run build
+npx serve .
 ```
 
-## Deployment notes
+Then open the URL it prints.
 
-- The project is deploy-ready from the repository root.
-- `npm run build` is the expected production build command and `npm run vercel-build` delegates to it for Vercel deployments.
-- `npm run runtime-smoke` launches a local static server and uses Playwright CLI to confirm the homepage loads without runtime console errors and that the hero canvas renders.
-- All homepage assets are referenced with relative paths from `index.html`, so the site can also be deployed to other static hosts without changing the source.
-- Re-run the smoke script after homepage edits to confirm accessibility hooks, external-link hardening, and key responsive CSS guards are still present.
+## Tests
+
+There are two PowerShell scripts in `tests/`:
+
+- `npm run smoke` checks the markup without a browser: every page is present, the shared nav links match, the homepage keeps its three.js shell while the subpages stay plain, and any `target="_blank"` link carries `rel="noopener noreferrer"`.
+- `npm run runtime-smoke` loads the homepage in Playwright and fails if the console errors or the hero canvas doesn't render.
+
+I run both after touching the homepage.
+
+## Deploy
+
+Hosted on Vercel. Everything is static, so any host works - just point it at the repo root. `npm run build` doesn't build anything; it echoes one line so Vercel has a command to run.
