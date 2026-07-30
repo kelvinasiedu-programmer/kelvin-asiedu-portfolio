@@ -6,7 +6,7 @@
   <title>Projects | Kelvin Asiedu</title>
   <meta
     name="description"
-    content="Featured projects by Kelvin Asiedu spanning ecommerce analytics, RAG applications, and fintech-style software systems."
+    content="Featured projects by Kelvin Asiedu spanning safety-critical AI systems, ecommerce analytics, RAG applications, and fintech-style software systems."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,6 +40,34 @@
       </section>
 
       <section class="page-section project-stack">
+        <article class="project-entry">
+          <div class="project-heading">
+            <p class="project-number"></p>
+            <div>
+              <h2>SleepWise</h2>
+              <p class="project-meta">Python, FastAPI, scikit-learn, BM25, Playwright, Docker | Jun 2026 to Jul 2026</p>
+            </div>
+          </div>
+          <p class="project-blurb">
+            Most AI health tools hand the question to a language model, which is how someone gets told their
+            supplement is fine alongside their blood thinner. SleepWise inverts that: deterministic rules decide
+            what is safe before any model runs, and input the system cannot read fails closed instead of guessing.
+            Built as an engineering demonstration on sample data, not a clinical product.
+          </p>
+          <ul class="page-list">
+            <li>Built two deterministic safety engines in which a language model never makes a safety decision, covered by 122 tests at 96% coverage and an evaluation harness that fails the build on regression.</li>
+            <li>Trained a character-level medication classifier that cut false accepts on uncovered drugs from 2.5% to 0% by vetoing fuzzy dictionary matches, and shipped it over a configuration that scored higher on accuracy but not on safety.</li>
+            <li>Wrote a BM25 retriever from scratch and benchmarked it against local transformer embeddings across 24 queries, keeping BM25 after measuring 1.00 recall on the query shape the system actually issues.</li>
+            <li>Put the service through a hostile external review that reproduced 4 safety defects against the live deployment, and fixed each one with a regression test that pins the invariant in place.</li>
+            <li>Audited all 39 medical claims against their cited sources, removing 5 that no source supported and correcting 2 that had been wrongly marked as verified.</li>
+            <li>Measured p50 latency at 13 ms for the full pipeline and documented where throughput degrades under concurrency, including the limits of the benchmark itself.</li>
+          </ul>
+          <div class="project-actions">
+            <a class="btn-main" href="https://sleepwise-90oh.onrender.com" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            <a class="btn-ghost" href="https://github.com/kelvinasiedu-programmer/sleepwise" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </article>
+
         <article class="project-entry">
           <div class="project-heading">
             <p class="project-number"></p>
