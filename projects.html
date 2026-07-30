@@ -49,18 +49,19 @@
             </div>
           </div>
           <p class="project-blurb">
-            Most AI health tools hand the question to a language model, which is how someone gets told their
-            supplement is fine alongside their blood thinner. SleepWise inverts that: deterministic rules decide
-            what is safe before any model runs, and input the system cannot read fails closed instead of guessing.
-            Built as an engineering demonstration on sample data, not a clinical product.
+            Most AI health tools hand the question straight to a language model. That is how someone ends up being
+            told their supplement is fine alongside their blood thinner. SleepWise turns it around: fixed rules
+            settle what is safe before any AI is involved, and anything the system cannot read with confidence is
+            refused rather than guessed at. Built as an engineering demonstration on sample data, not a clinical product.
           </p>
           <ul class="page-list">
-            <li>Built two deterministic safety engines in which a language model never makes a safety decision, covered by 122 tests at 96% coverage and an evaluation harness that fails the build on regression.</li>
-            <li>Trained a character-level medication classifier that cut false accepts on uncovered drugs from 2.5% to 0% by vetoing fuzzy dictionary matches, and shipped it over a configuration that scored higher on accuracy but not on safety.</li>
-            <li>Wrote a BM25 retriever from scratch and benchmarked it against local transformer embeddings across 24 queries, keeping BM25 after measuring 1.00 recall on the query shape the system actually issues.</li>
-            <li>Put the service through a hostile external review that reproduced 4 safety defects against the live deployment, and fixed each one with a regression test that pins the invariant in place.</li>
-            <li>Audited all 39 medical claims against their cited sources, removing 5 that no source supported and correcting 2 that had been wrongly marked as verified.</li>
-            <li>Measured p50 latency at 13 ms for the full pipeline and documented where throughput degrades under concurrency, including the limits of the benchmark itself.</li>
+            <li>Made it impossible for the AI to decide what is safe: fixed rules run first and settle every safety question, with 122 automated tests and a scoring harness that blocks any change weakening a known-dangerous combination.</li>
+            <li>Taught the system to read messy entries like "warfarin 5mg tab" or a misspelled drug name, training a machine-learning classifier that eliminated the cases where it confidently matched a medication it did not actually cover (2.5% of them down to zero).</li>
+            <li>Chose the simpler search engine on evidence rather than instinct: built the evidence retrieval from scratch, tested it head-to-head against a neural alternative across 24 queries, and kept the original after measuring that it found the correct source every time on the queries the app really makes.</li>
+            <li>Handed the live service to a hostile external reviewer, who reproduced 4 real safety bugs. Fixed all 4 and wrote a test for each so they cannot come back.</li>
+            <li>Fact-checked all 39 medical claims against the sources they cited, deleting 5 that no source actually supported and correcting 2 I had wrongly marked as verified.</li>
+            <li>Load-tested every route: a complete safety check answers in 13 milliseconds, with the point where performance starts to suffer documented alongside the limits of the benchmark itself.</li>
+            <li>The payoff is what happens when it cannot understand you. Mistype a medication and it says so, instead of quietly returning a clean result that hides the interaction you were checking for.</li>
           </ul>
           <div class="project-actions">
             <a class="btn-main" href="https://sleepwise-90oh.onrender.com" target="_blank" rel="noopener noreferrer">Live Demo</a>
