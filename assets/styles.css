@@ -1179,10 +1179,12 @@ button {
   }
 }
 
-/* Gradual blur over the hero canvas. Layers are injected by assets/gradual-blur.js,
-   so the page renders normally without JavaScript. Sits above the canvas and below
-   .ui-layer: it must blur the scene, never the hero text. */
-.gradual-blur {
+/* Gradual blur. Layers are injected by assets/gradual-blur.js, so pages render
+   normally without JavaScript. */
+
+/* Hero: fixed to the viewport bottom, above the canvas and below .ui-layer (z-index 10)
+   so it blurs the scene and never the hero text. */
+.landing-page > .gradual-blur {
   position: fixed;
   left: 0;
   right: 0;
@@ -1192,7 +1194,36 @@ button {
   isolation: isolate;
 }
 
+/* Project cards: anchored to the card's own bottom edge. */
+.project-entry {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-entry .gradual-blur {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  isolation: isolate;
+  opacity: 0.6;
+  transition: opacity 0.4s ease-out;
+}
+
+/* focus-within so keyboard users get the same treatment as a mouse hover. */
+.project-entry:hover .gradual-blur,
+.project-entry:focus-within .gradual-blur {
+  opacity: 1;
+}
+
 .gradual-blur-layer {
   position: absolute;
   inset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-entry .gradual-blur {
+    transition: none;
+  }
 }
