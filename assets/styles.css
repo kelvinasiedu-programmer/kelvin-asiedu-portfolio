@@ -1179,51 +1179,65 @@ button {
   }
 }
 
-/* Gradual blur. Layers are injected by assets/gradual-blur.js, so pages render
-   normally without JavaScript. */
-
-/* Hero: fixed to the viewport bottom, above the canvas and below .ui-layer (z-index 10)
-   so it blurs the scene and never the hero text. */
-.landing-page > .gradual-blur {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 4;
-  pointer-events: none;
+/* GradualBlur - ported from the React Bits component. Overlays are injected by
+   assets/gradual-blur.js from data-gradual-blur attributes, so pages render normally
+   without JavaScript. Rules below mirror the component's own stylesheet. */
+.gradual-blur {
   isolation: isolate;
+  pointer-events: none;
+  transition: opacity 0.3s ease-out;
 }
 
-/* Project cards: anchored to the card's own bottom edge. */
+.gradual-blur-parent {
+  overflow: hidden;
+}
+
+.gradual-blur-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.gradual-blur-inner > div {
+  -webkit-backdrop-filter: inherit;
+  backdrop-filter: inherit;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .gradual-blur-inner > div {
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0.5;
+  }
+}
+
+/* The component sets z-index inline, and target="page" adds 100 to it. On the hero that
+   would land above .ui-layer (z-index 10) and blur the hero text, so it is pinned back
+   below the UI here. */
+.gradual-blur.hero-blur {
+  z-index: 4 !important;
+}
+
+/* Hosts need a positioning context for the absolutely placed overlay. */
 .project-entry {
   position: relative;
   overflow: hidden;
 }
 
-.project-entry .gradual-blur {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  isolation: isolate;
+/* Cards fade the ramp up on interaction; focus-within so keyboard users get it too. */
+.project-entry > .gradual-blur {
   opacity: 0.6;
   transition: opacity 0.4s ease-out;
 }
 
-/* focus-within so keyboard users get the same treatment as a mouse hover. */
-.project-entry:hover .gradual-blur,
-.project-entry:focus-within .gradual-blur {
+.project-entry:hover > .gradual-blur,
+.project-entry:focus-within > .gradual-blur {
   opacity: 1;
 }
 
-.gradual-blur-layer {
-  position: absolute;
-  inset: 0;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .project-entry .gradual-blur {
+  .gradual-blur,
+  .project-entry > .gradual-blur {
     transition: none;
   }
 }
