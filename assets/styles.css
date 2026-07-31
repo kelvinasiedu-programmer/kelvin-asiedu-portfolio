@@ -1178,3 +1178,21 @@ button {
     transition: none;
   }
 }
+
+/* Gradual blur over the hero canvas. Layers are injected by assets/gradual-blur.js,
+   so the page renders normally without JavaScript. Sits above the canvas and below
+   .ui-layer: it must blur the scene, never the hero text. */
+.gradual-blur {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.gradual-blur-layer {
+  position: absolute;
+  inset: 0;
+}
